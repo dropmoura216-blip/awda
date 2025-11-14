@@ -8,24 +8,24 @@ interface DeliveryStepProps {
 const DeliveryStep: React.FC<DeliveryStepProps> = ({ onDeliverySelect }) => {
   return (
     <div className="w-full text-center animate-slide-up">
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">Como prefere receber?</h2>
-      <p className="text-white/80 mb-10">Rápido e fácil, você escolhe.</p>
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Como prefere receber?</h2>
+      <p className="text-gray-500 mb-10">Rápido e fácil, você escolhe.</p>
       
       <div className="space-y-4">
         <button
           onClick={() => onDeliverySelect('Entrega em casa')}
-          className="w-full flex items-center justify-center bg-white text-orange-600 font-bold text-lg py-6 px-6 rounded-xl shadow-lg transform transition-transform duration-200 hover:scale-105"
+          className="w-full flex items-center justify-center bg-gray-800 text-white font-bold text-lg py-5 px-6 rounded-xl shadow-lg transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-500/50"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mr-4" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 mr-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm13.5-8.5l1.96 2.5H17V9.5h3.5zM18 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
           </svg>
           <span>Entrega em casa</span>
         </button>
         <button
           onClick={() => onDeliverySelect('Retirada rápida')}
-          className="w-full flex items-center justify-center bg-white/20 text-white border-2 border-white/50 font-bold text-lg py-6 px-6 rounded-xl shadow-lg transform transition-transform duration-200 hover:scale-105"
+          className="w-full flex items-center justify-center bg-white text-gray-800 border-2 border-gray-200 font-bold text-lg py-5 px-6 rounded-xl shadow-sm transform transition-transform duration-200 hover:scale-105 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-orange-500/50"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mr-4" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 mr-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M21.58 10.73l-1.63-5.52a2 2 0 0 0-1.92-1.21H7.83l.22 1H18.03a1 1 0 0 1 .96.6l1.29 4.35-1.57.46-1.29-4.35H7.59l-.9-3H4v2h1.61l2.06 7.02c.19.64.76 1.07 1.42 1.07h7.24c.66 0 1.23-.43 1.42-1.07l1.04-3.59H18v-2h2.58l1 3.42.92.27-.92-3.69z"/>
           </svg>
           <span>Retirada rápida</span>

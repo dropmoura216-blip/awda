@@ -34,6 +34,8 @@ export default function App() {
     if (method === 'Entrega em casa') {
       setStep(Step.Address);
     } else {
+      setAddress('');
+      setSchedule(null);
       setStep(Step.Summary);
     }
   };
@@ -112,29 +114,34 @@ export default function App() {
         return <WelcomeStep onStart={handleStart} />;
     }
   };
+  
+  const mainContainerClass = step === Step.Welcome ? 'p-0' : 'p-6';
 
   return (
-    <div className="bg-orange-600 text-white min-h-screen flex flex-col items-center justify-between p-4 font-inter relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-black/10 z-0"></div>
-      
-      <header className="w-full max-w-md mx-auto z-10">
+    <div className="text-gray-800 min-h-screen flex flex-col font-inter">
+      <div className="w-full flex-grow flex flex-col overflow-hidden">
+        
         {step !== Step.Welcome && (
-          <div className="flex items-center justify-between mb-6">
-            <button onClick={handleBack} className="text-white text-sm font-bold opacity-80 hover:opacity-100 transition-opacity">
-              &larr; Voltar
-            </button>
-            <StepIndicator currentStep={step} />
-          </div>
+          <header className="w-full p-4 z-10 border-b border-gray-200 flex-shrink-0">
+            <div className="flex items-center justify-between">
+              <button onClick={handleBack} className="text-gray-500 text-sm font-bold hover:text-gray-900 transition-colors">
+                &larr; Voltar
+              </button>
+              <StepIndicator currentStep={step} />
+            </div>
+          </header>
         )}
-      </header>
 
-      <main className="flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto z-10">
-        {renderStep()}
-      </main>
-      
-      <footer className="w-full text-center text-xs text-white/60 z-10 py-2">
-        Pagamento somente ao receber!
-      </footer>
+        <main className={`flex-grow flex flex-col w-full z-10 overflow-hidden ${mainContainerClass}`}>
+          {renderStep()}
+        </main>
+        
+        {step !== Step.Welcome && step !== Step.Summary && (
+           <footer className="w-full text-center text-xs text-gray-400 z-10 py-3 border-t border-gray-200 flex-shrink-0">
+             Pagamento somente ao receber!
+           </footer>
+        )}
+      </div>
     </div>
   );
 }

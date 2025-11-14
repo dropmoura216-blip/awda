@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Step } from '../types';
 
@@ -15,8 +14,8 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
       {Array.from({ length: totalSteps }).map((_, index) => (
         <div
           key={index}
-          className={`w-3 h-3 rounded-full transition-all duration-300 ${
-            index <= activeStepIndex ? 'bg-white' : 'bg-white/40'
+          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+            index <= activeStepIndex ? 'bg-gray-800' : 'bg-gray-300'
           } ${index === activeStepIndex ? 'scale-125' : ''}`}
         />
       ))}

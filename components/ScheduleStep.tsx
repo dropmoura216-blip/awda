@@ -39,21 +39,21 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
 
   return (
     <div className="w-full text-center animate-slide-up">
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">Quando quer receber?</h2>
-      <p className="text-white/80 mb-10">Escolha o melhor dia e horário para você.</p>
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Quando quer receber?</h2>
+      <p className="text-gray-500 mb-10">Escolha o melhor dia e horário para você.</p>
       
       <div className="space-y-8">
         <div>
-          <h3 className="font-bold text-xl mb-4">Dia da Entrega</h3>
+          <h3 className="font-bold text-gray-800 text-lg mb-4">Dia da Entrega</h3>
           <div className="grid grid-cols-3 gap-3">
             {deliveryDays.map(day => (
               <button
                 key={day.value}
                 onClick={() => setSelectedDay(day.value)}
-                className={`p-4 rounded-xl font-bold transition-all duration-200 transform hover:scale-105 ${
+                className={`p-3 rounded-xl font-bold transition-all duration-200 transform hover:scale-105 text-sm ${
                   selectedDay === day.value
-                    ? 'bg-white text-orange-600 scale-105 shadow-lg'
-                    : 'bg-white/20 border-2 border-white/50'
+                    ? 'bg-gray-800 text-white scale-105 shadow-lg'
+                    : 'bg-white text-gray-800 border-2 border-gray-200'
                 }`}
               >
                 {day.label}
@@ -64,23 +64,23 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
 
         {selectedDay && (
           <div className="animate-fade-in">
-            <h3 className="font-bold text-xl mb-4">Horário de Entrega</h3>
+            <h3 className="font-bold text-gray-800 text-lg mb-4">Horário de Entrega</h3>
             <input
               type="text"
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
               placeholder="Ex: Entre 14h e 16h"
-              className="w-full p-4 bg-white/20 border-2 border-white/50 rounded-xl text-white placeholder-white/60 text-lg focus:outline-none focus:ring-4 focus:ring-white/50 transition-shadow"
+              className="w-full p-4 bg-gray-100 border-2 border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 text-lg focus:outline-none focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 transition-all"
               required
             />
           </div>
         )}
       </div>
 
-      <div className="mt-12">
+      <div className="mt-10">
         <button
           onClick={handleSubmit}
-          className="w-full bg-black text-white font-bold text-xl py-4 px-8 rounded-xl shadow-2xl transform transition-transform duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gray-800 text-white font-bold text-xl py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!selectedDay || !selectedTime.trim()}
         >
           Confirmar Horário

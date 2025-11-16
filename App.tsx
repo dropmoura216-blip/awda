@@ -9,7 +9,7 @@ import SummaryStep from './components/SummaryStep';
 import ProgressBar from './components/StepIndicator';
 
 // --- CONFIGURAÇÕES ---
-const WHATSAPP_NUMBER = "5514999999999"; // Substitua pelo seu número com código do país e DDD
+const WHATSAPP_NUMBER = "5514991211522"; // Substitua pelo seu número com código do país e DDD
 const PRICE = "R$139,90";
 const CITY = "Marília-SP";
 // --------------------

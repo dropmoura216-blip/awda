@@ -6,11 +6,11 @@ import DeliveryStep from './components/DeliveryStep';
 import AddressStep from './components/AddressStep';
 import ScheduleStep from './components/ScheduleStep';
 import SummaryStep from './components/SummaryStep';
-import StepIndicator from './components/StepIndicator';
+import ProgressBar from './components/StepIndicator';
 
 // --- CONFIGURAÇÕES ---
 const WHATSAPP_NUMBER = "5514999999999"; // Substitua pelo seu número com código do país e DDD
-const PRICE = "R$120,00";
+const PRICE = "R$120";
 const CITY = "Marília-SP";
 // --------------------
 
@@ -82,6 +82,8 @@ export default function App() {
     if (deliveryMethod === 'Retirada rápida') {
         message += `\n- Local: Combinar retirada em ${CITY}`;
     }
+    message += `\n- Valor: ${PRICE}`;
+    message += `\n- Pagamento: No ato da entrega`;
     return encodeURIComponent(message);
   }, [size, deliveryMethod, address, schedule]);
 
@@ -115,33 +117,30 @@ export default function App() {
     }
   };
   
-  const mainContainerClass = step === Step.Welcome ? 'p-0' : 'p-6';
+  const showHeader = step !== Step.Welcome;
+  const totalSteps = 5;
 
   return (
-    <div className="text-gray-800 min-h-screen flex flex-col font-inter">
-      <div className="w-full flex-grow flex flex-col overflow-hidden">
-        
-        {step !== Step.Welcome && (
-          <header className="w-full p-4 z-10 border-b border-gray-200 flex-shrink-0">
-            <div className="flex items-center justify-between">
-              <button onClick={handleBack} className="text-gray-500 text-sm font-bold hover:text-gray-900 transition-colors">
-                &larr; Voltar
-              </button>
-              <StepIndicator currentStep={step} />
+    <div className="text-black h-full flex flex-col font-inter overflow-hidden">
+      {showHeader && (
+        <header className="flex-shrink-0 w-full p-4 z-10">
+          <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
+            <button onClick={handleBack} className="text-black/70 hover:text-black transition-colors p-2 -ml-2 rounded-full hover:bg-black/10">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div className="w-full">
+              <ProgressBar currentStep={step} totalSteps={totalSteps} />
             </div>
-          </header>
-        )}
+          </div>
+        </header>
+      )}
 
-        <main className={`flex-grow flex flex-col w-full z-10 overflow-hidden ${mainContainerClass}`}>
-          {renderStep()}
-        </main>
-        
-        {step !== Step.Welcome && step !== Step.Summary && (
-           <footer className="w-full text-center text-xs text-gray-400 z-10 py-3 border-t border-gray-200 flex-shrink-0">
-             Pagamento somente ao receber!
-           </footer>
-        )}
-      </div>
+      <main className="flex-grow flex flex-col w-full max-w-md mx-auto overflow-hidden">
+        {renderStep()}
+      </main>
+      
     </div>
   );
 }

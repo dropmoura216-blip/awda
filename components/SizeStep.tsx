@@ -8,32 +8,34 @@ const SIZES = [40, 41, 42];
 
 const SizeStep: React.FC<SizeStepProps> = ({ onSizeSelect }) => {
   return (
-    <div className="w-full text-center animate-slide-up">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Qual o seu tamanho?</h2>
-      <p className="text-gray-500 mb-10">Escolha uma das opções disponíveis.</p>
-      
-      <div className="grid grid-cols-3 gap-4 w-full">
-        {SIZES.map((size) => (
-          <button
-            key={size}
-            onClick={() => onSizeSelect(size)}
-            className="aspect-square bg-white text-gray-800 border-2 border-gray-200 rounded-2xl flex items-center justify-center text-4xl font-bold shadow-sm transform transition-all duration-200 hover:bg-gray-800 hover:text-white hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-500/50"
-          >
-            {size}
-          </button>
-        ))}
+    <div className="w-full h-full flex flex-col justify-center text-center animate-slide-in p-8">
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-black mb-2 text-balance">Qual o seu tamanho?</h2>
+        <p className="text-black/70 mb-12">Tamanhos disponíveis para pronta entrega.</p>
+        
+        <div className="grid grid-cols-3 gap-4 w-full max-w-sm mx-auto">
+          {SIZES.map((size) => (
+            <button
+              key={size}
+              onClick={() => onSizeSelect(size)}
+              className="aspect-square bg-white/50 text-black border-2 border-black/20 rounded-2xl flex items-center justify-center text-4xl font-bold shadow-md transform transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-black/50"
+            >
+              {size}
+            </button>
+          ))}
+        </div>
       </div>
        <style>{`
-            @keyframes slideUp {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
+            @keyframes slideIn {
+                from { opacity: 0; transform: translateX(50px) scale(0.98); }
+                to { opacity: 1; transform: translateX(0) scale(1); }
             }
-            .animate-slide-up {
-                animation: slideUp 0.5s ease-out forwards;
+            .animate-slide-in {
+                animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             }
         `}</style>
     </div>
   );
 };
 
-export default SizeStep;
+export default React.memo(SizeStep);

@@ -11,11 +11,10 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
   const deliveryDays = useMemo(() => {
     const days = [];
     const today = new Date();
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
 
     const formatDay = (date: Date, label: string) => ({
       label: label,
-      value: `${date.toLocaleDateString('pt-BR', options).split('-')[0]}, ${date.toLocaleDateString('pt-BR')}`
+      value: `${date.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'short' })}`
     });
 
     days.push(formatDay(today, 'Hoje'));
@@ -26,7 +25,7 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
     
     const dayAfter = new Date(today);
     dayAfter.setDate(dayAfter.getDate() + 2);
-    days.push(formatDay(dayAfter, dayAfter.toLocaleDateString('pt-BR', options).split('-')[0]));
+    days.push(formatDay(dayAfter, dayAfter.toLocaleDateString('pt-BR', { weekday: 'long' })));
     
     return days;
   }, []);
@@ -38,49 +37,52 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
   };
 
   return (
-    <div className="w-full text-center animate-slide-up">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Quando quer receber?</h2>
-      <p className="text-gray-500 mb-10">Escolha o melhor dia e horário para você.</p>
-      
-      <div className="space-y-8">
-        <div>
-          <h3 className="font-bold text-gray-800 text-lg mb-4">Dia da Entrega</h3>
-          <div className="grid grid-cols-3 gap-3">
-            {deliveryDays.map(day => (
-              <button
-                key={day.value}
-                onClick={() => setSelectedDay(day.value)}
-                className={`p-3 rounded-xl font-bold transition-all duration-200 transform hover:scale-105 text-sm ${
-                  selectedDay === day.value
-                    ? 'bg-gray-800 text-white scale-105 shadow-lg'
-                    : 'bg-white text-gray-800 border-2 border-gray-200'
-                }`}
-              >
-                {day.label}
-              </button>
-            ))}
+    <div className="w-full h-full flex flex-col justify-between text-center animate-slide-in p-8">
+      <div className="flex-grow flex flex-col justify-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-black mb-2 text-balance">Quando quer receber?</h2>
+        <p className="text-black/70 mb-10">Escolha o melhor dia e horário para você.</p>
+        
+        <div className="space-y-8 max-w-sm mx-auto w-full">
+          <div>
+            <h3 className="font-bold text-black/60 text-sm tracking-widest uppercase mb-4">Dia</h3>
+            <div className="grid grid-cols-3 gap-3">
+              {deliveryDays.map(day => (
+                <button
+                  key={day.value}
+                  onClick={() => setSelectedDay(day.value)}
+                  className={`p-3 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-24 shadow-md ${
+                    selectedDay === day.value
+                      ? 'bg-black text-white scale-105 shadow-xl'
+                      : 'bg-white/50 text-black border-2 border-black/20'
+                  }`}
+                >
+                  <span className="text-lg">{day.label}</span>
+                  <span className={`text-xs mt-1 ${selectedDay === day.value ? 'text-gray-400' : 'text-black/60'}`}>{day.value.split(', ')[1]}</span>
+                </button>
+              ))}
+            </div>
           </div>
+
+          {selectedDay && (
+            <div className="animate-fade-in">
+              <h3 className="font-bold text-black/60 text-sm tracking-widest uppercase mb-4">Horário Sugerido</h3>
+              <input
+                type="text"
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+                placeholder="Ex: Entre 14h e 16h"
+                className="w-full p-4 bg-white/50 border-2 border-black/20 rounded-2xl text-black placeholder-black/50 text-lg focus:outline-none focus:ring-4 focus:ring-black/50 focus:border-black/50 transition-all duration-300 shadow-md"
+                required
+              />
+            </div>
+          )}
         </div>
-
-        {selectedDay && (
-          <div className="animate-fade-in">
-            <h3 className="font-bold text-gray-800 text-lg mb-4">Horário de Entrega</h3>
-            <input
-              type="text"
-              value={selectedTime}
-              onChange={(e) => setSelectedTime(e.target.value)}
-              placeholder="Ex: Entre 14h e 16h"
-              className="w-full p-4 bg-gray-100 border-2 border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 text-lg focus:outline-none focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 transition-all"
-              required
-            />
-          </div>
-        )}
       </div>
-
-      <div className="mt-10">
+      
+      <div className="flex-shrink-0">
         <button
           onClick={handleSubmit}
-          className="w-full bg-gray-800 text-white font-bold text-xl py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full max-w-sm mx-auto bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!selectedDay || !selectedTime.trim()}
         >
           Confirmar Horário
@@ -88,16 +90,16 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
       </div>
 
        <style>{`
-            @keyframes slideUp {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
+            @keyframes slideIn {
+                from { opacity: 0; transform: translateX(50px) scale(0.98); }
+                to { opacity: 1; transform: translateX(0) scale(1); }
             }
-            .animate-slide-up {
-                animation: slideUp 0.5s ease-out forwards;
+            .animate-slide-in {
+                animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             }
             @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
+                from { opacity: 0; transform: scale(0.95); }
+                to { opacity: 1; transform: scale(1); }
             }
             .animate-fade-in {
                 animation: fadeIn 0.5s ease-out forwards;
@@ -107,4 +109,4 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
   );
 };
 
-export default ScheduleStep;
+export default React.memo(ScheduleStep);

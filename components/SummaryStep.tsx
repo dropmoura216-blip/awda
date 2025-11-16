@@ -10,14 +10,13 @@ interface SummaryStepProps {
   whatsappLink: string;
 }
 
-// Ícones (minificados para economizar espaço)
 const IconSize = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H4a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>;
 const IconDelivery = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const IconSchedule = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>;
 const IconPayment = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>;
 
 const SummaryItem = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number | null }) => (
-    <li className="flex items-center justify-between gap-2 py-2.5">
+    <li className="flex items-center justify-between gap-2 py-3">
         <div className="flex items-center gap-3">
             <div className="bg-black/5 p-2 rounded-full">{icon}</div>
             <span className="font-medium text-black/60 text-sm flex-shrink-0">{label}</span>
@@ -31,7 +30,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({ size, deliveryMethod, address
   return (
     <div className="w-full h-full flex flex-col justify-between animate-slide-in text-black p-6">
       <div className="flex-shrink-0 text-center">
-          <h2 className="text-3xl font-bold mb-1 text-balance">Tudo Certo Para o Seu Pedido!</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-1 text-balance">Tudo Certo Para o Seu Pedido!</h2>
           <p className="text-black/70 mb-4 max-w-sm mx-auto text-balance text-sm">
             Confirme os detalhes abaixo. O pagamento é na entrega.
           </p>

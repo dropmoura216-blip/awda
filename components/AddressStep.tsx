@@ -56,10 +56,12 @@ const AddressStep: React.FC<AddressStepProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between text-center animate-slide-in p-8">
+    <div className="w-full h-full flex flex-col justify-between text-center animate-slide-in p-6 md:p-8">
       <div className="flex-grow flex flex-col justify-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-black mb-2 text-balance">Endereço para entrega</h2>
-        <p className="text-black/70 mb-10">Bairro, rua e número para levarmos até você.</p>
+        <div className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-2 text-balance">Endereço para entrega</h2>
+          <p className="text-black/70">Bairro, rua e número para levarmos até você.</p>
+        </div>
         
         <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto">
           <div className="relative">
@@ -91,7 +93,7 @@ const AddressStep: React.FC<AddressStepProps> = ({ onSubmit }) => {
         </form>
       </div>
       
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 pt-4">
         <button
           onClick={handleSubmit}
           type="submit"

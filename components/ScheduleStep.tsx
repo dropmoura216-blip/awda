@@ -38,10 +38,12 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between text-center animate-slide-in p-8">
+    <div className="w-full h-full flex flex-col justify-between text-center animate-slide-in p-6 md:p-8">
       <div className="flex-grow flex flex-col justify-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-black mb-2 text-balance">Quando quer receber?</h2>
-        <p className="text-black/70 mb-10">Escolha o melhor dia e horário para você.</p>
+        <div className="mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-2 text-balance">Quando quer receber?</h2>
+            <p className="text-black/70">Escolha o melhor dia e horário para você.</p>
+        </div>
         
         <div className="space-y-8 max-w-sm mx-auto w-full">
           <div>
@@ -51,13 +53,13 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
                 <button
                   key={day.value}
                   onClick={() => setSelectedDay(day.value)}
-                  className={`relative p-3 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-24 shadow-md overflow-hidden ${
+                  className={`relative p-2 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-20 shadow-md overflow-hidden ${
                     selectedDay === day.value
                       ? 'bg-black text-white scale-105 shadow-xl'
                       : 'bg-white/50 text-black border-2 border-black/20'
                   }`}
                 >
-                  <span className="text-lg capitalize">{day.label}</span>
+                  <span className="text-base capitalize">{day.label}</span>
                   <span className={`text-xs mt-1 ${selectedDay === day.value ? 'text-gray-400' : 'text-black/60'}`}>{day.value.split(', ')[1]}</span>
                 </button>
               ))}
@@ -80,7 +82,7 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
         </div>
       </div>
       
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 pt-4">
         <button
           onClick={handleSubmit}
           className="w-full max-w-sm mx-auto bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"

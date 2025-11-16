@@ -7,29 +7,24 @@ interface WelcomeStepProps {
 const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
 
   const handleStartClick = () => {
-    // Adiciona uma vibração sutil para melhor feedback tátil em dispositivos móveis
     if (navigator.vibrate) {
-      navigator.vibrate(50); // 50ms é um toque rápido e agradável
+      navigator.vibrate(50);
     }
     onStart();
   };
 
   return (
-    <div className="flex flex-col h-full text-center animate-fade-in p-8 justify-center items-center gap-4 relative">
-      <div className="z-10 flex flex-col items-center">
-          <h1 className="font-anton text-6xl md:text-7xl text-black uppercase tracking-tighter drop-shadow-lg">
+    <div className="flex flex-col h-full text-center p-6 md:p-8 justify-between animate-fade-in">
+      <div className="z-10 flex flex-col items-center mt-8">
+          <h1 className="font-anton text-5xl md:text-6xl text-black uppercase tracking-tighter drop-shadow-lg">
               Nike Pegasus
           </h1>
-          <p className="text-lg md:text-xl font-semibold -mt-2 text-black/80 drop-shadow-md">
+          <p className="text-md md:text-lg font-semibold -mt-2 text-black/80 drop-shadow-md">
               Chegou em <span className="font-bold text-black underline decoration-wavy decoration-white/80">Marília</span>.
           </p>
       </div>
 
-      <p className="font-medium text-black/70 drop-shadow-md max-w-xs mx-auto z-10 text-balance">
-          Escolha seu tamanho, confirme a entrega e receba em casa. <span className="font-bold">Pague só no ato.</span>
-      </p>
-      
-      <div className="relative z-10 my-4">
+       <div className="relative z-10 my-4 flex-grow flex items-center justify-center">
           <div className="absolute -inset-8 bg-white/30 rounded-full blur-2xl -z-10"></div>
           <img 
               src="https://i.postimg.cc/kMZZjSZ2/a48f17c5-9e0b-4822-8126-f43ac12ff2bf-1763141303.jpg" 
@@ -38,7 +33,10 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
           />
       </div>
 
-      <div className="w-full max-w-xs mx-auto z-10 relative flex flex-col items-center">
+      <div className="w-full max-w-xs mx-auto z-10 mb-4 flex flex-col items-center">
+          <p className="font-medium text-black/70 drop-shadow-md max-w-xs mx-auto z-10 text-balance mb-6">
+            Escolha seu tamanho, confirme a entrega e receba em casa. <span className="font-bold">Pague só no ato.</span>
+          </p>
           <button 
               onClick={handleStartClick} 
               className="w-full bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 animate-pulse-slow"

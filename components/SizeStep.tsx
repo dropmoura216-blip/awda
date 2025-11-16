@@ -12,17 +12,19 @@ const SIZES = [
 
 const SizeStep: React.FC<SizeStepProps> = ({ onSizeSelect }) => {
   return (
-    <div className="w-full h-full flex flex-col justify-center text-center animate-slide-in p-8">
+    <div className="w-full h-full flex flex-col justify-center text-center animate-slide-in p-6 md:p-8">
       <div className="flex-grow flex flex-col items-center justify-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-black mb-2 text-balance">Qual o seu tamanho?</h2>
-        <p className="text-black/70 mb-12">Tamanhos disponíveis para pronta entrega.</p>
+        <div className="flex-shrink-0 mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-2 text-balance">Qual o seu tamanho?</h2>
+            <p className="text-black/70">Tamanhos disponíveis para pronta entrega.</p>
+        </div>
         
-        <div className="grid grid-cols-3 gap-4 w-full max-w-sm mx-auto">
+        <div className="grid grid-cols-3 gap-4 w-full max-w-xs mx-auto">
           {SIZES.map(({ size, lowStock }) => (
             <div key={size} className="flex flex-col items-center">
               <button
                 onClick={() => onSizeSelect(size)}
-                className="aspect-square w-full bg-white/50 text-black border-2 border-black/20 rounded-2xl flex items-center justify-center text-4xl font-bold shadow-md transform transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-black/50"
+                className="aspect-square w-full bg-white/50 text-black border-2 border-black/20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl font-bold shadow-md transform transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-black/50"
               >
                 {size}
               </button>

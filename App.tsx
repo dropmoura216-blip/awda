@@ -119,10 +119,10 @@ export default function App() {
   };
   
   const showHeader = step !== Step.Welcome;
-  const totalSteps = 5;
+  const totalSteps = 4; // Size -> Delivery -> Address/Schedule -> Summary
 
   return (
-    <div className="text-black h-full flex flex-col font-inter overflow-hidden">
+    <div className="text-black h-full flex flex-col font-inter">
       {showHeader && (
         <header className="flex-shrink-0 w-full p-4 z-10">
           <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
@@ -138,7 +138,7 @@ export default function App() {
         </header>
       )}
 
-      <main className="flex-grow flex flex-col w-full max-w-md mx-auto overflow-hidden">
+      <main className="flex-grow flex flex-col w-full max-w-md mx-auto overflow-y-auto">
         {renderStep()}
       </main>
       

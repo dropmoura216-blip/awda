@@ -5,6 +5,15 @@ interface WelcomeStepProps {
 }
 
 const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
+
+  const handleStartClick = () => {
+    // Adiciona uma vibração sutil para melhor feedback tátil em dispositivos móveis
+    if (navigator.vibrate) {
+      navigator.vibrate(50); // 50ms é um toque rápido e agradável
+    }
+    onStart();
+  };
+
   return (
     <div className="flex flex-col h-full text-center animate-fade-in p-8 justify-center items-center gap-4 relative">
       <div className="z-10 flex flex-col items-center">
@@ -31,7 +40,7 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
 
       <div className="w-full max-w-xs mx-auto z-10 relative flex flex-col items-center">
           <button 
-              onClick={onStart} 
+              onClick={handleStartClick} 
               className="w-full bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95"
           >
               FAZER O PEDIDO

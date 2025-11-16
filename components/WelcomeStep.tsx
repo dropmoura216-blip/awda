@@ -41,7 +41,7 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
       <div className="w-full max-w-xs mx-auto z-10 relative flex flex-col items-center">
           <button 
               onClick={handleStartClick} 
-              className="w-full bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95"
+              className="w-full bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 animate-pulse-slow"
           >
               FAZER O PEDIDO
           </button>

@@ -27,6 +27,14 @@ const SummaryItem = ({ icon, label, value }: { icon: React.ReactNode; label: str
 
 
 const SummaryStep: React.FC<SummaryStepProps> = ({ size, deliveryMethod, address, schedule, price, whatsappLink }) => {
+  
+  const handleWhatsAppClick = () => {
+    // Rastreia o evento de conversão final para o Microsoft Clarity.
+    if (typeof window.clarity === 'function') {
+      window.clarity('event', 'Conversion: Clicked WhatsApp');
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col justify-between animate-slide-in text-black p-6">
       <div className="flex-shrink-0 text-center">
@@ -82,6 +90,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({ size, deliveryMethod, address
       <div className="flex-shrink-0 mt-auto pt-4">
         <a
           href={whatsappLink}
+          onClick={handleWhatsAppClick}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full bg-black text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"

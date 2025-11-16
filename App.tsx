@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Step, DeliveryMethod } from './types';
 import WelcomeStep from './components/WelcomeStep';
 import SizeStep from './components/SizeStep';
@@ -20,6 +20,15 @@ export default function App() {
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod | null>(null);
   const [address, setAddress] = useState<string>('');
   const [schedule, setSchedule] = useState<{ day: string; time: string } | null>(null);
+
+  useEffect(() => {
+    // Rastreia a etapa atual do funil para o Microsoft Clarity.
+    // Isso permite criar funis de conversão e ver onde os usuários desistem.
+    if (typeof window.clarity === 'function') {
+      const stepName = Step[step]; // Converte o enum para string (ex: "Welcome", "Size")
+      window.clarity('event', `Viewed Step: ${stepName}`);
+    }
+  }, [step]);
 
   const handleStart = () => {
     setStep(Step.Size);

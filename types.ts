@@ -9,3 +9,9 @@ export enum Step {
 }
 
 export type DeliveryMethod = 'Entrega em casa' | 'Retirada rápida';
+
+declare global {
+  interface Window {
+    clarity: (action: string, key?: string, value?: any) => void;
+  }
+}

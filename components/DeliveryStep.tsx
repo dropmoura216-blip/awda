@@ -15,12 +15,17 @@ const DeliveryStep: React.FC<DeliveryStepProps> = ({ onDeliverySelect }) => {
         <div className="space-y-4 w-full max-w-sm mx-auto">
           <button
             onClick={() => onDeliverySelect('Entrega em casa')}
-            className="w-full flex items-center justify-center text-left bg-black text-white font-bold text-lg p-5 rounded-2xl shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-black/50"
+            className="w-full flex items-center text-left bg-black text-white p-5 rounded-2xl shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-black/50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mr-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm13.5-8.5l1.96 2.5H17V9.5h3.5zM18 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
             </svg>
-            <span className="flex-grow">Entrega em casa</span>
+            <div className="flex-grow flex items-center justify-between">
+              <span className="font-bold text-lg">Entrega em casa</span>
+              <span className="bg-white text-orange-600 text-xs font-bold tracking-wide px-3 py-1 rounded-full shadow-sm">
+                Envio Grátis
+              </span>
+            </div>
           </button>
           <button
             onClick={() => onDeliverySelect('Retirada rápida')}

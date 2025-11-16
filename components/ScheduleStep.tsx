@@ -25,7 +25,8 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
     
     const dayAfter = new Date(today);
     dayAfter.setDate(dayAfter.getDate() + 2);
-    days.push(formatDay(dayAfter, dayAfter.toLocaleDateString('pt-BR', { weekday: 'long' })));
+    const dayAfterLabel = dayAfter.toLocaleDateString('pt-BR', { weekday: 'long' }).replace('-feira', '');
+    days.push(formatDay(dayAfter, dayAfterLabel));
     
     return days;
   }, []);
@@ -50,13 +51,13 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
                 <button
                   key={day.value}
                   onClick={() => setSelectedDay(day.value)}
-                  className={`p-3 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-24 shadow-md ${
+                  className={`relative p-3 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-24 shadow-md overflow-hidden ${
                     selectedDay === day.value
                       ? 'bg-black text-white scale-105 shadow-xl'
                       : 'bg-white/50 text-black border-2 border-black/20'
                   }`}
                 >
-                  <span className="text-lg">{day.label}</span>
+                  <span className="text-lg capitalize">{day.label}</span>
                   <span className={`text-xs mt-1 ${selectedDay === day.value ? 'text-gray-400' : 'text-black/60'}`}>{day.value.split(', ')[1]}</span>
                 </button>
               ))}
@@ -103,6 +104,12 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
             }
             .animate-fade-in {
                 animation: fadeIn 0.5s ease-out forwards;
+            }
+            @keyframes pulseFast {
+              50% { opacity: 0.7; }
+            }
+            .animate-pulse-fast {
+                animation: pulseFast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             }
         `}</style>
     </div>

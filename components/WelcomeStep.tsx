@@ -37,7 +37,7 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
               FAZER O PEDIDO
           </button>
            <div className="mt-4 animate-slide-in-left self-start">
-              <div className="bg-black/80 backdrop-blur-sm text-white p-3 rounded-lg shadow-xl text-left text-sm relative">
+              <div className="bg-black/80 backdrop-blur-sm text-white p-3 rounded-lg shadow-xl text-left text-sm relative animate-pulse-slow">
                   <p className="text-balance">
                       <span className="font-bold text-orange-400">🔥 ÚLTIMAS UNIDADES!</span> Restam apenas 3 pares. Garanta o seu.
                   </p>
@@ -69,6 +69,14 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
               opacity: 0; 
               animation: slideInLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
               will-change: transform, opacity;
+          }
+          @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+            50% { transform: scale(1.03); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1); }
+          }
+          .animate-pulse-slow {
+              animation: pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+              animation-delay: 1.5s;
           }
       `}</style>
     </div>

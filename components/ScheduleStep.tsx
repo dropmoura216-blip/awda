@@ -56,11 +56,11 @@ const ScheduleStep: React.FC<ScheduleStepProps> = ({ onScheduleSelect }) => {
                   className={`relative p-2 rounded-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 text-sm flex flex-col items-center justify-center h-20 shadow-md overflow-hidden ${
                     selectedDay === day.value
                       ? 'bg-black text-white scale-105 shadow-xl'
-                      : 'bg-white/50 text-black border-2 border-black/20'
+                      : 'bg-white/80 text-black hover:bg-white'
                   }`}
                 >
                   <span className="text-base capitalize">{day.label}</span>
-                  <span className={`text-xs mt-1 ${selectedDay === day.value ? 'text-gray-400' : 'text-black/60'}`}>{day.value.split(', ')[1]}</span>
+                  <span className={`text-xs mt-1 ${selectedDay === day.value ? 'text-gray-400' : 'text-black/70'}`}>{day.value.split(', ')[1]}</span>
                 </button>
               ))}
             </div>

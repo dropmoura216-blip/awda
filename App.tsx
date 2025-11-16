@@ -14,12 +14,6 @@ const PRICE = "R$120";
 const CITY = "Marília-SP";
 // --------------------
 
-declare global {
-  interface Window {
-    fbq?: (...args: any[]) => void;
-  }
-}
-
 export default function App() {
   const [step, setStep] = useState<Step>(Step.Welcome);
   const [size, setSize] = useState<number | null>(null);
@@ -27,24 +21,12 @@ export default function App() {
   const [address, setAddress] = useState<string>('');
   const [schedule, setSchedule] = useState<{ day: string; time: string } | null>(null);
 
-  const numericPrice = useMemo(() => {
-    const priceString = PRICE.replace('R$', '').trim().replace(',', '.');
-    return parseFloat(priceString);
-  }, []);
-
   const handleStart = () => {
-    window.fbq?.('track', 'InitiateCheckout');
     setStep(Step.Size);
   };
   
   const handleSizeSelect = (selectedSize: number) => {
     setSize(selectedSize);
-    window.fbq?.('track', 'AddToCart', {
-        content_name: 'Nike Pegasus',
-        content_ids: [`pegasus-${selectedSize}`],
-        value: numericPrice,
-        currency: 'BRL',
-    });
     setStep(Step.Delivery);
   };
 

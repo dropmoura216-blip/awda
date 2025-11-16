@@ -46,7 +46,7 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onStart }) => {
               FAZER O PEDIDO
           </button>
            <div className="mt-4 animate-slide-in-left self-start">
-              <div className="bg-black/80 backdrop-blur-sm text-white p-3 rounded-lg shadow-xl text-left text-sm relative animate-pulse-slow">
+              <div className="bg-black/80 backdrop-blur-sm text-white p-3 rounded-lg shadow-xl text-left text-sm relative">
                   <p className="text-balance">
                       <span className="font-bold text-orange-400">🔥 ÚLTIMAS UNIDADES!</span> Restam apenas 3 pares. Garanta o seu.
                   </p>
